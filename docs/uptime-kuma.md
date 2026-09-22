@@ -39,10 +39,11 @@ services:
 
 Utilizes **HTTP(s)** monitors to verify that the application layer is actively routing traffic and responding, rather than relying strictly on the Docker container's process state.
 
-| Service Name | Monitor Type | URL Endpoint (Tailscale) | Expected HTTP Status |
+| Service Name | Monitor Type | URL Endpoint | Expected HTTP Status |
 | :--- | :--- | :--- | :--- |
 | **Ollama API** | HTTP(s) | `http://YOUR_LOCAL_IP:11434/api/tags` | `200-299` |
 | **Whisper STT** | HTTP(s) | `http://YOUR_LOCAL_IP:9000/docs` | `200-299` |
+| **Valheim Server** | Docker Container | Container Name: valheim-server | | Container Running `UP` |
 
 **Global Monitor Settings:**
 
