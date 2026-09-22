@@ -28,6 +28,11 @@ Privacy-focused, self-hosted AI transcription project. Designed to convert spoke
 | **Whisper** | Acts as the local speech recognition engine. Processes raw audio files and extracts text transcripts. |
 | **Ollama** | Serves as the local LLM runtime. Used to summarize and format the raw transcript from Whisper. |
 
+### Game Servers
+| Service | Purpose |
+| :--- | :--- |
+| **Valheim Server** | Dedicated Valheim server with automated backups. |
+
 ---
 
 ## System Hardware
