@@ -21,7 +21,7 @@
 ### MoriScribe
 Privacy-focused, self-hosted AI transcription project. Designed to convert spoken audio into formatted text locally on your own infrastructure without relying on external cloud APIs.
 
-**Repository:** [MoriScribe GitHub Repository](hhttps://github.com/magnusmorisbakk-lgtm/MoriScribe)
+**Repository:** [MoriScribe GitHub Repository](https://github.com/magnusmorisbakk-lgtm/MoriScribe)
 
 | Service | Purpose |
 | :--- | :--- |
