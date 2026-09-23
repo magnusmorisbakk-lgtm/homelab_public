@@ -65,7 +65,13 @@ Privacy-focused, self-hosted AI transcription project. Designed to convert spoke
 │   ├── ollama.md
 │   └── whisper.md
 └── services/
-    ├── ollama/
-    │   └── docker-compose.yml
-    └── whisper/
-        └── docker-compose.yml
+    ├── moriscribe
+    │     ├── ollama/
+    │     └── whisper/           
+    ├── monitoring/
+    │       ├── grafana/
+    │       ├── prometheus/
+    │       ├── node-exporter/
+    │       └── uptime-kuma/
+    └── game-servers/
+             └── valheim/

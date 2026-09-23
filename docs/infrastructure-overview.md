@@ -17,11 +17,15 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **Ollama** | `11434` | `11434` | Active | HTTP / REST (`/api/generate`) |
 | **Faster-Whisper** | `9000` | `8000` | Active | HTTP / REST (`/v1/audio/transcriptions`) |
-|**Uptime Kuma** | `3001` | `3001` | Active | HTTP / Dashboard |
-
+| **Uptime Kuma** | `3001` | `3001` | Active | HTTP / Dashboard |
+| **Grafana** | `3000` | `3000` | Active | HTTP / Dashboard |
+| **Prometheus** | `9090` | `9090` | Active | HTTP / Web UI & REST (`/metrics`) |
+| **Node Exporter** | `9100` | `9100` | Active | HTTP / Metrics (`/metrics`) |
+| **Valheim Server** | `2456` & `2457` | `2456` & `2457` | Active | UDP (`2456`) and Steam Query (`2457`)|
 ---
 
 ## Directory & Mount Point Layout
+(Needs to be updated)
 
 ```text
 /
