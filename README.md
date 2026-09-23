@@ -17,6 +17,10 @@
 | Service | Purpose |
 | :--- | :--- |
 | **[Uptime Kuma](https://github.com/louislam/uptime-kuma)** | Self-hosted monitoring tool for tracking service availability, HTTP endpoints, and infrastructure health. |
+| **Grafana** | Visualization and dashboard for present time metrics from Prometheus.|
+| **Prometheus** | Pulls, indexes and stores real time metrics. |
+| **Node Exporter** | Light agent colecting kernel and hardware performance metrics. Exposes them for Prometheus. |
+
 
 ### MoriScribe
 Privacy-focused, self-hosted AI transcription project. Designed to convert spoken audio into formatted text locally on your own infrastructure without relying on external cloud APIs.

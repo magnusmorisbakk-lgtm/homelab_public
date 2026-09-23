@@ -1,0 +1,14 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus # Config is stored on the SSD
+      - /mnt/hdd/data/prometheus:/prometheus # Static data is stored on the HDD
+volumes:
+  prom_data:
