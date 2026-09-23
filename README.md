@@ -1,12 +1,11 @@
 # Homelab Server Architecture & Services
+Self hosted infrastructure in my dorm, running containerized AI, monitoring, networking, storage and personal services.
 
-## Navigation
+## Architecture
+At its stage, the homelab is built around a single Ubuntu server host, with individual services deployed as seperate Docker containers.
 
-* [Tailscale & Networking](docs/tailscale-setup.md): Remote access, exit node setup, and UFW subnet routing configuration.
-* [Storage Layout](docs/storage-layout.md): Partition breakdown across NVMe SSD (`/`) and 4TB HDD (`/mnt/hdd`).
-* [Infrastructure Overview](docs/infrastructure-overview.md): Global server specs, full port matrix, and system health commands.
-* [Ollama LLM Setup](docs/ollama.md): GPU-accelerated Ollama deployment guide and model management commands.
-* [Faster-Whisper STT Setup](docs/whisper.md): OpenAI-compatible speech-to-text API service documentation.
+This approach was chosen, due to its isolation between services, simplified dependency and management, and make
+deployments reproducible through Docker Compose. Static/persistent application data is stored outside the containers, allowing the containers to be recreated  or updated without losing its data. This makes it easy to set up, update and make changes in the future.
 
 ---
 
