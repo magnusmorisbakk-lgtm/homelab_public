@@ -45,7 +45,7 @@ The homelab is used to host personal services, game servers, monitoring and loca
     ├── ollama.md
     └── whisper.md
 ```
-Each service stack can be managed independetly, allowing individual services to be updated and restarted or recreated without affecting other services.
+Each service stack can be managed independently, allowing individual services to be updated and restarted or recreated without affecting other services.
 
 Persistent application data is stored outside the containers, allowing containers to be recreated or updated without losing data such as configurations, databases or AI models.
 
@@ -53,16 +53,16 @@ Persistent application data is stored outside the containers, allowing container
 
 ## Architecture
 
-*Note for self: create visualization of arcchitecture*
+*Note for self: create visualization of architecture*
 
 ## Workflow
-Management of stacks is handled through `homelab.sh`, which provides aCLI for simple operation of the individual service stacks. Each stack is configured to be independently deployable thorugh its own Docker Compose configuration.
+Management of stacks is handled through `homelab.sh`, which provides a CLI for simple operation of the individual service stacks. Each stack is configured to be independently deployable thorough its own Docker Compose configuration.
 
-Runtime is provided by Docker. Services are isolated into seperate containers and grouped into independent and grouped into independent Compose stacks based on theis specific purpose. Docker compose files remain seperate for maintainability.
+Runtime is provided by Docker. Services are isolated into separate containers and grouped into independent and grouped into independent Compose stacks based on theis specific purpose. Docker compose files remain seperate for maintainability.
 
 Storage seperates persisten service data from their container filesystems. This allows containers to be recreated or updated without data loss.
 
-Monitoring is provided by Prometheus, Grafana, Node Exporter and Uptime Kuma. Node Exportes exposes host metrics, Prometheus collects the metrics, Grafand provied visualization of the metrics and Uptime Kuma monitors availability of services.
+Monitoring is provided by Prometheus, Grafana, Node Exporter and Uptime Kuma. Node Exporter exposes host metrics, Prometheus collects the metrics, Grafana provied visualization of the metrics and Uptime Kuma monitors availability of services.
 
 AI workloads run locally on the server's GPU. MoriScribe utilizes Whisper for speech to text  transcription and Ollama for local LLM inference and transcript summarization.
 
@@ -71,7 +71,12 @@ Networking uses the local network for standard service acces, while Tailscale pr
 ## Service stack documentation
 ### Monitoring
 
+- [Monitoring Architecture](docs/monitoring.md)
+
 ### MoriScribe
+
+- [Whisper](docs/whisper.md)
+- [Ollama](docs/ollama.md)
 
 ### Game Servers
 
