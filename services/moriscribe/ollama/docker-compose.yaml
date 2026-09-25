@@ -6,7 +6,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - /mnt/hdd/data/ollama:/root/.ollama
+      - /mnt/hdd/docker-volumes/moriscribe/ollama:/root/.ollama
     deploy:
       resources:
         reservations:

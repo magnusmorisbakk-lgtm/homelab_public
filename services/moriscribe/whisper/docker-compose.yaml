@@ -9,7 +9,7 @@ services:
       - WHISPER_MODEL=base
       - WHISPER_INFERENCE_DEVICE=cuda
     volumes:
-      - /mnt/hdd/data/ai-models/whisper-cache:/root/.cache/huggingface
+      - /mnt/hdd/docker-volumes/whisper:/root/.cache/huggingface
     deploy:
       resources:
         reservations:
