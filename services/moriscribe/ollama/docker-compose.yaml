@@ -3,10 +3,14 @@ services:
     image: ollama/ollama:latest
     container_name: ollama
     restart: unless-stopped
+    user: "1000:1000"
+    group_add:
+      - "44"  # Host video group
+      - "991" # Host render/device group
     ports:
       - "11434:11434"
     volumes:
-      - /mnt/hdd/data/ollama:/root/.ollama
+      - /mnt/hdd/docker-volumes/moriscribe/ollama:/root/.ollama
     deploy:
       resources:
         reservations:

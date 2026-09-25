@@ -1,16 +1,27 @@
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:2
+    user: "1000:100"
+    cap_add:
+      - NET_RAW # Allows non root ICMP pinging
     container_name: uptime-kuma
     restart: unless-stopped
     ports:
       - "3001:3001"
     volumes:
-      - /mnt/hdd/data/uptime-kuma:/app/data
+      # Persistent storage on 4TB HDD
+      - /mnt/hdd/docker-volumes/monitoring/uptime-kuma:/app/data
+      # Host Docker socket for container status monitoring
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - TZ=Europe/Oslo
       - UMASK=0022
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3001/ || exit 1"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
     logging:
       driver: "json-file"
       options:

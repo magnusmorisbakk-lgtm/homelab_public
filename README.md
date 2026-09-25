@@ -1,76 +1,98 @@
-# Homelab Server Architecture & Services
-Self hosted infrastructure in my dorm, running containerized AI, monitoring, networking, storage and personal services.
-
-## Architecture
-At its stage, the homelab is built around a single Ubuntu server host, with individual services deployed as seperate Docker containers.
-
-This approach was chosen, due to its isolation between services, simplified dependency and management, and make
-deployments reproducible through Docker Compose. Static/persistent application data is stored outside the containers, allowing the containers to be recreated  or updated without losing its data. This makes it easy to set up, update and make changes in the future.
-
+# Homelab
 ---
+
+Self hosted infrastructure running on a single Ubuntu Server host.
+
+The homelab is used to host personal services, game servers, monitoring and local AI workloads. Services are deployed as isolated Docker containers and managed through Docker Compose.
 
 ## Services
+---
 
-### Monitoring
+| **Stack** | **Service** | **Purpose** |
+| :--- | :--- | :--- |
+| **Monitoring** | Grafana | Metrics visualization and dashboard |
+| **Monitoring** | Prometheus | Metrics collection |
+| **Monitoring** | Node Exporter | System metrics |
+| **Monitoring** | Uptime Kuma | Service availability monitoring |
+| **MoriScribe (AI)** | Whisper | Local speech to text inference |
+| **MoriScribe (AI)** | Ollama | Local LLM interference |
+| **Game servers** | Valheim | Dedicated game server |
+| **Game servers** | Minecraft | Dedicated game server |
 
-| Service | Purpose |
-| :--- | :--- |
-| **[Uptime Kuma](https://github.com/louislam/uptime-kuma)** | Self-hosted monitoring tool for tracking service availability, HTTP endpoints, and infrastructure health. |
-| **Grafana** | Visualization and dashboard for present time metrics from Prometheus.|
-| **Prometheus** | Pulls, indexes and stores real time metrics. |
-| **Node Exporter** | Light agent colecting kernel and hardware performance metrics. Exposes them for Prometheus. |
 
 
-### MoriScribe
-Privacy-focused, self-hosted AI transcription project. Designed to convert spoken audio into formatted text locally on your own infrastructure without relying on external cloud APIs.
+## Overview
 
-**Repository:** [MoriScribe GitHub Repository](https://github.com/magnusmorisbakk-lgtm/MoriScribe)
+```text
+.
+├── README.md
+├──services/
+│   ├── moriscribe
+│   │     ├── ollama/
+│   │     └── whisper/           
+│   ├── monitoring/
+│   │       ├── grafana/ 
+│   │       ├── prometheus/
+│   │       ├── node-exporter/
+│   │       └── uptime-kuma/
+│   └── game-servers/
+│             ├── valheim/
+│             └── minecraft-all-the-mods/
+└── docs/
+    ├── infrastructure-overview.md
+    ├── storage-layout.md
+    ├── tailscale-setup.md
+    ├── ollama.md
+    └── whisper.md
+```
+Each service stack can be managed independetly, allowing individual services to be updated and restarted or recreated without affecting other services.
 
-| Service | Purpose |
-| :--- | :--- |
-| **Whisper** | Acts as the local speech recognition engine. Processes raw audio files and extracts text transcripts. |
-| **Ollama** | Serves as the local LLM runtime. Used to summarize and format the raw transcript from Whisper. |
-
-### Game Servers
-| Service | Purpose |
-| :--- | :--- |
-| **Valheim Server** | Dedicated Valheim server with automated backups. |
+Persistent application data is stored outside the containers, allowing containers to be recreated or updated without losing data such as configurations, databases or AI models.
 
 ---
+
+## Architecture
+
+*Note for self: create visualization of arcchitecture*
+
+## Workflow
+Management of stacks is handled through `homelab.sh`, which provides aCLI for simple operation of the individual service stacks. Each stack is configured to be independently deployable thorugh its own Docker Compose configuration.
+
+Runtime is provided by Docker. Services are isolated into seperate containers and grouped into independent and grouped into independent Compose stacks based on theis specific purpose. Docker compose files remain seperate for maintainability.
+
+Storage seperates persisten service data from their container filesystems. This allows containers to be recreated or updated without data loss.
+
+Monitoring is provided by Prometheus, Grafana, Node Exporter and Uptime Kuma. Node Exportes exposes host metrics, Prometheus collects the metrics, Grafand provied visualization of the metrics and Uptime Kuma monitors availability of services.
+
+AI workloads run locally on the server's GPU. MoriScribe utilizes Whisper for speech to text  transcription and Ollama for local LLM inference and transcript summarization.
+
+Networking uses the local network for standard service acces, while Tailscale provides remote access without directly exposing management services to the public.
+
+## Service stack documentation
+### Monitoring
+
+### MoriScribe
+
+### Game Servers
+
+## Management
+`homelab.sh` provides a simple interface for managing the different service stacks.
+```bash
+./homelab.sh
+```
+This makes service management consistent and simple without requiring all services to be defined in a single Docker Compose.
 
 ## System Hardware
 
 | Component | Specification |
 | :--- | :--- |
-| **Host Name** | `YOUR_HOSTNAME` |
-| **OS / Kernel** | Ubuntu Server |
-| **GPU Acceleration** | NVIDIA GPU (CUDA Supported) |
-| **CPU** | Ryzen 5 3600 (6 Cores / 12 Threads) |
-| **RAM** | 16 GB DDR4 |
-| **Tailscale Address** | `YOUR_TAILSCALE_IP` |
-| **Local LAN IP** | `YOUR_LOCAL_IP` |
+| **CPU** | Ryzen 5 3600 (6 Cores / 12 Threads) 
+| **Memory** | 32 GB DDR4 |
+| **GPU** | Nvidia RTX 2060 |
+| **Storage** | 512 GB NVMe SSD + 4 TB HDD |
+| **OS** | Ubuntu Server |
 
----
+The gpu is primarily used for GPU accelerated AI workloads.
 
-## Repository Structure
 
-```text
-.
-├── README.md
-├── docs/
-│   ├── infrastructure-overview.md
-│   ├── storage-layout.md
-│   ├── tailscale-setup.md
-│   ├── ollama.md
-│   └── whisper.md
-└── services/
-    ├── moriscribe
-    │     ├── ollama/
-    │     └── whisper/           
-    ├── monitoring/
-    │       ├── grafana/
-    │       ├── prometheus/
-    │       ├── node-exporter/
-    │       └── uptime-kuma/
-    └── game-servers/
-             └── valheim/
+

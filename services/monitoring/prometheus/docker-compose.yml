@@ -9,6 +9,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./prometheus:/etc/prometheus # Config is stored on the SSD
-      - /mnt/hdd/data/prometheus:/prometheus # Static data is stored on the HDD
+      - /mnt/hdd/docker-volumes/monitoring/prometheus:/prometheus # Static data is stored on the HDD
 volumes:
   prom_data:
